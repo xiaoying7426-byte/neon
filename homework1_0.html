@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Gaming Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        header {
+            background: rgba(26, 26, 46, 0.9);
+            padding: 16px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        /* Header layout with search bar */
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 16px;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 2rem;
+            color: #00ff88;
+            white-space: nowrap;
+        }
+        nav {
+            justify-self: center;
+        }
+        nav a {
+            color: #b794f6;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #00ff88;
+        }
+        /* Search bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 999px;
+            padding: 8px 12px;
+        }
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+            min-width: 180px;
+        }
+        .search-bar input::placeholder {
+            color: #a0aec0;
+        }
+        .search-bar button {
+            background: linear-gradient(45deg, #00ff88, #b794f6);
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .search-bar button:hover {
+            background: linear-gradient(45deg, #b794f6, #00ff88);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .game-card h3 {
+            margin-bottom: 10px;
+            color: #00ff88;
+        }
+        .game-card p {
+            margin-bottom: 15px;
+            color: #e2e8f0;
+        }
+        .game-card button {
+            background: linear-gradient(45deg, #00ff88, #b794f6);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .game-card button:hover {
+            background: linear-gradient(45deg, #b794f6, #00ff88);
+        }
+        .form-section {
+            background: rgba(26, 26, 46, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        .form-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+        form {
+            display: grid;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            color: #b794f6;
+        }
+        input, textarea {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        input::placeholder, textarea::placeholder {
+            color: #a0aec0;
+        }
+        button[type="submit"] {
+            background: linear-gradient(45deg, #00ff88, #b794f6);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(45deg, #b794f6, #00ff88);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(26, 26, 46, 0.9);
+            margin-top: 40px;
+            border-top: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        footer p {
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+        .social-icons a {
+            color: #b794f6;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: #00ff88;
+        }
+
+        /* Center the Contact section */
+        #contact {
+            display: grid;
+            place-items: center;
+            text-align: center;
+            gap: 12px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 10px;
+        }
+        #contact h2 {
+            color: #00ff88;
+        }
+        #contact p {
+            max-width: 700px;
+            color: #e2e8f0;
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 900px) {
+            .header-inner {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            header h1 {
+                font-size: 1.7rem;
+                text-align: center;
+            }
+            nav {
+                justify-self: center;
+            }
+            .search-bar {
+                justify-self: center;
+                width: 100%;
+                max-width: 520px;
+            }
+            .search-bar input {
+                min-width: 0;
+                width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .game-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <h1><i class="fas fa-gamepad"></i> Neon</h1>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#games">Games</a>
+                <a href="#recommend">Recommend</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <!-- Search Bar -->
+            <form class="search-bar" role="search" aria-label="Site Search" onsubmit="event.preventDefault(); alert('Searching for: ' + this.query.value);">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input type="search" name="query" placeholder="Search games, genres, platforms..." aria-label="Search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="home" class="hero">
+            <h2>Welcome to Neon</h2>
+            <p>Your ultimate destination for exploring trending games across PC, console, mobile, and indie platforms. Discover, play, and share your favorites!</p>
+        </section>
+
+        <section id="games">
+            <h2>Featured Games</h2>
+            <div class="game-grid">
+                <div class="game-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg" alt="Cyberpunk 2077">
+                    <h3>Cyberpunk 2077</h3>
+                    <p>An open-world RPG set in a dystopian future. Available on PC and consoles.</p>
+                    <button>Learn More</button>
+                </div>
+                <div class="game-card">
+                    <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2F9%2F9a%2FAmong_Us_cover_art.jpg&sp=1760792466T3c406e37960878e750bdda84651ae3a36d6762b166e498ae644fd15f355b5426" alt="Among Us">
+                    <h3>Among Us</h3>
+                    <p>A multiplayer social deduction game. Play on mobile and PC.</p>
+                    <button>Learn More</button>
+                </div>
+                <div class="game-card">
+                    <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2Fc%2Fc6%2FThe_Legend_of_Zelda_Breath_of_the_Wild.jpg&sp=1760792501Te241893657f8dba2bde4666e48f620c1b6eccbee06e6bc0888ac6ebecd0a08bd" alt="The Legend of Zelda: Breath of the Wild">
+                    <h3>The Legend of Zelda: Breath of the Wild</h3>
+                    <p>An epic adventure game for Nintendo Switch.</p>
+                    <button>Learn More</button>
+                </div>
+                <div class="game-card">
+                    <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2Ff%2Ffd%2FLogo_of_Stardew_Valley.png&sp=1760792545T1fe673a260a450bc2cb7a340772b3c3af7c771a72b14593537c47f3f6ade1eac" alt="Stardew Valley">
+                    <h3>Stardew Valley</h3>
+                    <p>A relaxing farming simulation indie game.</p>
+                    <button>Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommend" class="form-section">
+            <h2>Recommend a Game</h2>
+            <p>Share your favorite game recommendations with us! We'll feature them in our weekly updates.</p>
+            <form id="recommendForm">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="gameTitle">Game Title:</label>
+                <input type="text" id="gameTitle" name="gameTitle" required>
+
+                <label for="recommendation">Why Do You Recommend It?</label>
+                <textarea id="recommendation" name="recommendation" rows="4" required></textarea>
+
+                <button type="submit">Submit Recommendation</button>
+            </form>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Have questions? Reach out via our social media or the recommendation form above.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Gameon. All rights reserved. Gameon is free and updated weekly with the latest games.</p>
+        <div class="social-icons">
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
